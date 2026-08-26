@@ -9,7 +9,8 @@ The script:
 2. Paginates through "More" links to collect exactly 100 articles
 3. Runs 5 independent validation checks against the collected data
 4. Repeats the entire process across three browser engines simultaneously
-5. Generates a clean, readable HTML report of the results
+5. Captures a screenshot automatically if any check fails or an error occurs
+6. Generates a clean, readable HTML report of the results, including any screenshots
 
 ## Validation checks
 
@@ -39,6 +40,12 @@ While testing, I encountered intermittent timeouts when clicking through paginat
 
 Separately, during testing I also encountered a real Hacker News outage (confirmed via their public status history), which the script handled gracefully — reporting a clear per-browser error rather than hanging or crashing. This confirmed the error handling works correctly under real, unplanned failure conditions, not just simulated ones.
 
+## Screenshots on failure
+
+If any check fails, or an unrecoverable error occurs, the script automatically captures a screenshot of the page at that moment and saves it to a local `screenshots/` folder. The screenshot is also embedded directly in the HTML report next to the relevant browser's results.
+
+This is most useful when the browser successfully loaded something unexpected (e.g., a rate-limit page or a layout change) — the screenshot shows exactly what the page looked like, which a text error alone wouldn't capture. It's less useful for a pure network timeout before any content loads, since there's nothing rendered yet to capture in that case.
+
 ## Running the script
 
 ```bash
@@ -56,6 +63,5 @@ The script will print progress and results to the console, then automatically op
 
 ## Possible future improvements
 
-- Screenshot capture automatically attached to the report on any failure
 - Adaptive pacing (only slow down pagination if a timeout is actually detected, rather than always pausing)
 - JSON export of results alongside the HTML report, for machine-readable consumption
