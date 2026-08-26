@@ -2,6 +2,10 @@ const { chromium, firefox, webkit } = require('playwright');
 const fs = require('fs');
 const { exec } = require('child_process');
 
+if (!fs.existsSync('screenshots')) {
+  fs.mkdirSync('screenshots');
+}
+
 async function clickMoreWithRetry(page, countBeforeClick, maxRetries = 3) {
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     try {
@@ -118,17 +122,35 @@ function runChecks(articles) {
   return checks;
 }
 
+async function tryCaptureScreenshot(page, browserName, label) {
+  try {
+    const filename = `screenshots/failure-${browserName}-${label}.png`;
+    await page.screenshot({ path: filename, fullPage: true, timeout: 5000 });
+    return filename;
+  } catch (screenshotError) {
+    return null;
+  }
+}
+
 async function runForBrowser(browserType, browserName) {
   const browser = await browserType.launch();
   const page = await browser.newPage();
-  const result = { browserName, checks: [], error: null };
+  const result = { browserName, checks: [], error: null, screenshotPath: null };
 
   try {
     await page.goto('https://news.ycombinator.com/newest', { timeout: 15000 });
     const articles = await collectArticles(page);
     result.checks = runChecks(articles);
+
+    const anyCheckFailed = result.checks.some((c) => !c.passed);
+    if (anyCheckFailed) {
+      result.screenshotPath = await tryCaptureScreenshot(page, browserName, 'check-failure');
+    }
+
   } catch (error) {
     result.error = error.message;
+    result.screenshotPath = await tryCaptureScreenshot(page, browserName, 'error');
+
   } finally {
     await browser.close();
   }
@@ -141,11 +163,16 @@ function generateHtmlReport(allResults) {
 
   const browserSections = allResults
     .map((result) => {
+      const screenshotHtml = result.screenshotPath
+        ? `<div class="screenshot-box"><strong>Screenshot at failure:</strong><br><img src="${result.screenshotPath}" style="max-width:100%; border:1px solid #ccc; margin-top:8px;"></div>`
+        : '';
+
       if (result.error) {
         return `
         <div class="browser-block">
           <h2>${result.browserName}</h2>
           <div class="error-box"><strong>Error:</strong> ${result.error}</div>
+          ${screenshotHtml}
         </div>`;
       }
 
@@ -169,6 +196,7 @@ function generateHtmlReport(allResults) {
           <tr><th></th><th>Check</th><th>Details</th></tr>
           ${rows}
         </table>
+        ${screenshotHtml}
       </div>`;
     })
     .join('\n');
@@ -188,6 +216,7 @@ function generateHtmlReport(allResults) {
     .pass-row { background: #f1f8f2; }
     .fail-row { background: #fdecea; }
     .error-box { background: #fdecea; border: 1px solid #c62828; padding: 12px; border-radius: 6px; }
+    .screenshot-box { margin-top: 12px; max-width: 800px; }
   </style>
 </head>
 <body>
@@ -201,7 +230,7 @@ function generateHtmlReport(allResults) {
   fs.writeFileSync('report.html', html);
   console.log('\nHTML report generated: report.html');
 
-    const opener = process.platform === 'win32' ? 'start ""' : process.platform === 'darwin' ? 'open' : 'xdg-open';
+  const opener = process.platform === 'win32' ? 'start ""' : process.platform === 'darwin' ? 'open' : 'xdg-open';
   exec(`${opener} report.html`);
 }
 
@@ -224,6 +253,10 @@ function generateHtmlReport(allResults) {
         for (const check of result.checks) {
           console.log(`${check.passed ? '✅' : '❌'} [${name}] ${check.name} — ${check.details}`);
         }
+      }
+
+      if (result.screenshotPath) {
+        console.log(`📸 [${name}] Screenshot captured: ${result.screenshotPath}`);
       }
 
       return result;
