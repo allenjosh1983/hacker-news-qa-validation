@@ -6,8 +6,10 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; color: #222; }
     h1 { margin-bottom: 4px; }
+    h2 { border-bottom: 2px solid #1F3864; padding-bottom: 6px; margin-top: 40px; }
     .meta { color: #555; margin-bottom: 30px; }
-    .browser-block { margin-bottom: 36px; }
+    .page-block { margin-bottom: 20px; }
+    .browser-block { margin: 18px 0 18px 12px; }
     table { border-collapse: collapse; width: 100%; max-width: 800px; }
     td, th { padding: 8px 12px; border-bottom: 1px solid #eee; text-align: left; }
     .pass-row { background: #f1f8f2; }
@@ -17,121 +19,214 @@
   </style>
 </head>
 <body>
-  <h1>Hacker News /newest Validation Report</h1>
-  <p class="meta">Run at: 8/26/2026, 3:40:09 PM</p>
+  <h1>Hacker News Validation Report</h1>
+  <p class="meta">Run at: 8/27/2026, 6:46:04 PM | Pages tested: 2 | Browsers: Chromium, Firefox, WebKit</p>
   
-      <div class="browser-block">
-        <h2>Chromium — <span style="color:#2e7d32">PASS</span></h2>
-        <table>
-          <tr><th></th><th>Check</th><th>Details</th></tr>
-          
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>Exactly 100 articles collected</td>
-          <td>Collected 100 articles.</td>
-        </tr>
-
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>No duplicate article IDs</td>
-          <td>All 100 IDs are unique.</td>
-        </tr>
-
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>All articles have a non-empty title</td>
-          <td>Every article has a title.</td>
-        </tr>
-
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>All articles have a valid link</td>
-          <td>Every article has a link.</td>
-        </tr>
-
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>Articles sorted from newest to oldest</td>
-          <td>IDs strictly decrease across all 100 articles.</td>
-        </tr>
-        </table>
+      <div class="page-block">
+        <h2>Newest</h2>
         
+          <div class="browser-block">
+            <h3>Chromium — <span style="color:#2e7d32">PASS</span></h3>
+            <table>
+              <tr><th></th><th>Check</th><th>Details</th></tr>
+              
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>At least 1 article collected</td>
+              <td>Collected 100 articles.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>No duplicate article IDs</td>
+              <td>All 100 IDs are unique.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a non-empty title</td>
+              <td>Every article has a title.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a valid link</td>
+              <td>Every article has a link.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>Articles sorted from newest to oldest</td>
+              <td>IDs strictly decrease across all 100 articles.</td>
+            </tr>
+            </table>
+            
+          </div>
+
+          <div class="browser-block">
+            <h3>Firefox — <span style="color:#2e7d32">PASS</span></h3>
+            <table>
+              <tr><th></th><th>Check</th><th>Details</th></tr>
+              
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>At least 1 article collected</td>
+              <td>Collected 100 articles.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>No duplicate article IDs</td>
+              <td>All 100 IDs are unique.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a non-empty title</td>
+              <td>Every article has a title.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a valid link</td>
+              <td>Every article has a link.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>Articles sorted from newest to oldest</td>
+              <td>IDs strictly decrease across all 100 articles.</td>
+            </tr>
+            </table>
+            
+          </div>
+
+          <div class="browser-block">
+            <h3>WebKit — <span style="color:#2e7d32">PASS</span></h3>
+            <table>
+              <tr><th></th><th>Check</th><th>Details</th></tr>
+              
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>At least 1 article collected</td>
+              <td>Collected 100 articles.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>No duplicate article IDs</td>
+              <td>All 100 IDs are unique.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a non-empty title</td>
+              <td>Every article has a title.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a valid link</td>
+              <td>Every article has a link.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>Articles sorted from newest to oldest</td>
+              <td>IDs strictly decrease across all 100 articles.</td>
+            </tr>
+            </table>
+            
+          </div>
       </div>
 
-      <div class="browser-block">
-        <h2>Firefox — <span style="color:#2e7d32">PASS</span></h2>
-        <table>
-          <tr><th></th><th>Check</th><th>Details</th></tr>
-          
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>Exactly 100 articles collected</td>
-          <td>Collected 100 articles.</td>
-        </tr>
-
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>No duplicate article IDs</td>
-          <td>All 100 IDs are unique.</td>
-        </tr>
-
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>All articles have a non-empty title</td>
-          <td>Every article has a title.</td>
-        </tr>
-
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>All articles have a valid link</td>
-          <td>Every article has a link.</td>
-        </tr>
-
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>Articles sorted from newest to oldest</td>
-          <td>IDs strictly decrease across all 100 articles.</td>
-        </tr>
-        </table>
+      <div class="page-block">
+        <h2>Jobs</h2>
         
-      </div>
+            <div class="browser-block">
+              <h3>Chromium</h3>
+              <div class="error-box"><strong>Error:</strong> page.waitForSelector: Timeout 15000ms exceeded.
+Call log:
+[2m  - waiting for locator('tr.athing') to be visible[22m
+</div>
+              <div class="screenshot-box"><strong>Screenshot:</strong><br><img src="screenshots/failure-Jobs-Chromium-error.png" style="max-width:100%; border:1px solid #ccc; margin-top:8px;"></div>
+            </div>
 
-      <div class="browser-block">
-        <h2>WebKit — <span style="color:#2e7d32">PASS</span></h2>
-        <table>
-          <tr><th></th><th>Check</th><th>Details</th></tr>
-          
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>Exactly 100 articles collected</td>
-          <td>Collected 100 articles.</td>
-        </tr>
+          <div class="browser-block">
+            <h3>Firefox — <span style="color:#2e7d32">PASS</span></h3>
+            <table>
+              <tr><th></th><th>Check</th><th>Details</th></tr>
+              
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>At least 1 article collected</td>
+              <td>Collected 100 articles.</td>
+            </tr>
 
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>No duplicate article IDs</td>
-          <td>All 100 IDs are unique.</td>
-        </tr>
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>No duplicate article IDs</td>
+              <td>All 100 IDs are unique.</td>
+            </tr>
 
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>All articles have a non-empty title</td>
-          <td>Every article has a title.</td>
-        </tr>
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a non-empty title</td>
+              <td>Every article has a title.</td>
+            </tr>
 
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>All articles have a valid link</td>
-          <td>Every article has a link.</td>
-        </tr>
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a valid link</td>
+              <td>Every article has a link.</td>
+            </tr>
 
-        <tr class="pass-row">
-          <td>✅</td>
-          <td>Articles sorted from newest to oldest</td>
-          <td>IDs strictly decrease across all 100 articles.</td>
-        </tr>
-        </table>
-        
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>Articles sorted from newest to oldest</td>
+              <td>IDs strictly decrease across all 100 articles.</td>
+            </tr>
+            </table>
+            
+          </div>
+
+          <div class="browser-block">
+            <h3>WebKit — <span style="color:#2e7d32">PASS</span></h3>
+            <table>
+              <tr><th></th><th>Check</th><th>Details</th></tr>
+              
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>At least 1 article collected</td>
+              <td>Collected 100 articles.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>No duplicate article IDs</td>
+              <td>All 100 IDs are unique.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a non-empty title</td>
+              <td>Every article has a title.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>All articles have a valid link</td>
+              <td>Every article has a link.</td>
+            </tr>
+
+            <tr class="pass-row">
+              <td>✅</td>
+              <td>Articles sorted from newest to oldest</td>
+              <td>IDs strictly decrease across all 100 articles.</td>
+            </tr>
+            </table>
+            
+          </div>
       </div>
 </body>
 </html>
